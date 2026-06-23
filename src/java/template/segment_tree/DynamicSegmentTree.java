@@ -1,8 +1,5 @@
 package template.segment_tree;
 
-import org.junit.jupiter.api.condition.DisabledOnJre;
-
-import java.util.function.BiFunction;
 
 /**
  * 动态开点线段树，在没有值域,或者范围很大并且无法映射到小片范围的时候可以采用该类

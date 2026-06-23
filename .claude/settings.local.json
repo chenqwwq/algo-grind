@@ -28,7 +28,11 @@
       "Bash(gh repo:*)",
       "Bash(code --install-extension vscjava.vscode-java-pack 2>&1)",
       "Bash(\"/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code\" --install-extension vscjava.vscode-java-pack 2>&1)",
-      "Bash(\"/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code\" --list-extensions --show-versions 2>/dev/null | grep -i redhat)"
+      "Bash(\"/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code\" --list-extensions --show-versions 2>/dev/null | grep -i redhat)",
+      "Bash(cp -p /Users/Shared/shard_dir/curly-umbrella/llm-proposals/* /Users/Shared/llm-proposals/)",
+      "Bash(chgrp -R sharedgroup /Users/Shared/llm-proposals)",
+      "Bash(chmod -R g+w /Users/Shared/llm-proposals)",
+      "Bash(chmod g+s /Users/Shared/llm-proposals)"
     ],
     "additionalDirectories": [
       "/Users/chenqwwq/Desktop/chenqwwq/pro/_algorithm"
