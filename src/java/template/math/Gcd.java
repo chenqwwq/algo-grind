@@ -6,7 +6,7 @@ package template.math;
  * @author chen
  * @date 2022-02-10
  **/
-public class GcdAndLcm {
+public class Gcd {
 
     /**
      * 穷举法
@@ -27,14 +27,3 @@ public class GcdAndLcm {
     public static int gcd_division_recursive(int a, int b) {
         return b == 0 ? a : gcd_division_recursive(b, a % b);
     }
-
-
-    /**
-     * 求最小公倍数
-     */
-    public static int lcm(int a, int b) {
-        return a / gcd_division_recursive(a, b) * b;
-    }
-
-
-}
