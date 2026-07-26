@@ -27,3 +27,4 @@ public class Gcd {
     public static int gcd_division_recursive(int a, int b) {
         return b == 0 ? a : gcd_division_recursive(b, a % b);
     }
+}
