@@ -86,6 +86,7 @@ public final class Combination {
      * @param b 第二个非负整数
      * @return {@code a} 和 {@code b} 的最大公约数
      */
+    @SuppressWarnings("unused")
     private static long gcd(long a, long b) {
         while (b != 0) {
             long remainder = a % b;

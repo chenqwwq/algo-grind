@@ -1,8 +1,6 @@
 package top.chenqwwq.leetcode.contest.weekly._512._4;
 
-import java.lang.reflect.InaccessibleObjectException;
 import java.util.PriorityQueue;
-import java.util.logging.FileHandler;
 
 public class Solution {
     public long minCost(int m, int n, int[][] penalty) {
@@ -26,10 +24,12 @@ public class Solution {
         long[][][] stat = new long[m][n][2];
 
         while (!pq.isEmpty()) {
-            int[] top = pq.poll();
+            long[] top = pq.poll();
             // 当前下标
-            int i = top[1], j = top[2];
-            int cost = top[0];
+            int i = (int) top[1], j = (int) top[2];
+            int cost = (int) top[0];
         }
+
+        return 0L;
     }
 }
