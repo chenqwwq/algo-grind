@@ -34,7 +34,11 @@
       "Bash(chmod -R g+w /Users/Shared/llm-proposals)",
       "Bash(chmod g+s /Users/Shared/llm-proposals)",
       "WebFetch(domain:leetcode.com)",
-      "Bash(python3 -c ' *)"
+      "Bash(python3 -c ' *)",
+      "mcp__ide__getDiagnostics",
+      "Read(//Users/chenqwwq/bin/**)",
+      "Bash(~/bin/macism)",
+      "Bash(echo \"exit: $?\")"
     ],
     "additionalDirectories": [
       "/Users/chenqwwq/Desktop/chenqwwq/pro/_algorithm"
