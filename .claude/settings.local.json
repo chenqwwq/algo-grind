@@ -38,7 +38,10 @@
       "mcp__ide__getDiagnostics",
       "Read(//Users/chenqwwq/bin/**)",
       "Bash(~/bin/macism)",
-      "Bash(echo \"exit: $?\")"
+      "Bash(echo \"exit: $?\")",
+      "Bash(chmod +x scripts/lc)",
+      "Bash(ln -sf __TRACKED_VAR__/scripts/lc ~/bin/lc)",
+      "Bash(gh pr *)"
     ],
     "additionalDirectories": [
       "/Users/chenqwwq/Desktop/chenqwwq/pro/_algorithm"
