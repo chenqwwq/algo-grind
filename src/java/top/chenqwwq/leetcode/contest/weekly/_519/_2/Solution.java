@@ -10,7 +10,6 @@ public class Solution {
     private static final int LIMIT = 2_100_000_000;
 
     /**
-     * 按回文数值的奇偶分组，两组均为升序，可直接二分。
      * 每次操作是 ±2，不改变数值奇偶，所以 num 只能在自己的组里找。
      */
     static final List<Integer> odd = new ArrayList<>(), even = new ArrayList<>();
