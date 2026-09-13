@@ -32,7 +32,16 @@
       "Bash(cp -p /Users/Shared/shard_dir/curly-umbrella/llm-proposals/* /Users/Shared/llm-proposals/)",
       "Bash(chgrp -R sharedgroup /Users/Shared/llm-proposals)",
       "Bash(chmod -R g+w /Users/Shared/llm-proposals)",
-      "Bash(chmod g+s /Users/Shared/llm-proposals)"
+      "Bash(chmod g+s /Users/Shared/llm-proposals)",
+      "WebFetch(domain:leetcode.com)",
+      "Bash(python3 -c ' *)",
+      "mcp__ide__getDiagnostics",
+      "Read(//Users/chenqwwq/bin/**)",
+      "Bash(~/bin/macism)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(chmod +x scripts/lc)",
+      "Bash(ln -sf __TRACKED_VAR__/scripts/lc ~/bin/lc)",
+      "Bash(gh pr *)"
     ],
     "additionalDirectories": [
       "/Users/chenqwwq/Desktop/chenqwwq/pro/_algorithm"

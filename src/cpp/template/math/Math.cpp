@@ -23,8 +23,21 @@ int MOD = 10007;
 //    return m;
 //}
 
-int combination(int n, int m) {
+long long combination(int n, int m) {
+    if (n < 0 || m < 0 || m > n) {
+        return 0;
+    }
 
+    m = min(m, n - m);
+    long long ans = 1;
+    for (int i = 1; i <= m; i++) {
+        __int128 next = static_cast<__int128>(ans) * (n - m + i) / i;
+        if (next > numeric_limits<long long>::max()) {
+            throw overflow_error("combination result exceeds long long");
+        }
+        ans = static_cast<long long>(next);
+    }
+    return ans;
 }
 
 

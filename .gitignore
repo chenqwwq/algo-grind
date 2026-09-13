@@ -48,3 +48,6 @@ cmake-build-debug
 build
 target
 bin
+
+# Playwright MCP 工具日志
+.playwright-mcp/

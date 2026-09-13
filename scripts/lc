@@ -1,0 +1,132 @@
+#!/bin/bash
+# LeetCode 题解目录生成工具
+#
+# 用法（需在本仓库根目录执行）：
+#   lc -d          日常刷题，生成当天日期目录
+#   lc -w <num>    周赛，生成 contest/weekly/_<num>/_1 ~ _4
+#   lc -bw <num>   双周赛，生成 contest/biweek/_<num>/_1 ~ _4
+set -u
+
+CONTEST_COUNT=4
+
+# 打印用法
+usage() {
+    cat << 'EOF'
+用法：lc [-d | -w <num> | -bw <num>]
+
+  -d           日常刷题，在 daily 下按当天日期建目录
+  -w  <num>    周赛，在 contest/weekly/_<num> 下建 _1 ~ _4
+  -bw <num>    双周赛，在 contest/biweek/_<num> 下建 _1 ~ _4
+
+需在仓库根目录（含 src/java/top/chenqwwq/leetcode 的目录）执行。
+EOF
+}
+
+# 生成单个题解目录与 Solution.java 骨架，已存在则跳过不覆盖
+# $1 相对 leetcode 的路径，如 daily/_2026/_20260913
+create_solution() {
+    local rel="$1"
+    local dir="$LEETCODE_DIR/$rel"
+    local file="$dir/Solution.java"
+
+    # 注意：macOS 自带 bash 3.2 有多字节解析 bug，双引号内中文字面量后
+    # 紧跟变量展开会把中文尾字节粘进变量名，故一律拆成相邻的两段引号。
+    if [ -f "$file" ]; then
+        echo "跳过（已存在）: ""$file"
+        return 0
+    fi
+
+    mkdir -p "$dir"
+
+    # 包名 = top.chenqwwq.leetcode + 相对路径转点号
+    local pkg="top.chenqwwq.leetcode.$rel"
+
+    # 先写 package 声明（需变量展开）
+    cat > "$file" << EOF
+package ${pkg//\//.};
+
+EOF
+
+    # 再追加注释块与类体（单引号定界符，内容原样写入）
+    cat >> "$file" << 'EOF'
+/**
+ * @author chenqwwq
+EOF
+
+    cat >> "$file" << EOF
+ * @date $TODAY_SLASH
+ **/
+EOF
+
+    cat >> "$file" << 'EOF'
+public class Solution {
+
+    // TODO 替换为题目对应的方法签名
+    public Object solve(Object input) {
+        return null;
+    }
+}
+EOF
+
+    echo "创建: ""$file"
+}
+
+# 按题目数量批量生成，$1 目录前缀，$2 数量
+create_contest() {
+    local prefix="$1"
+    local count="$2"
+    local i=1
+    while [ "$i" -le "$count" ]; do
+        create_solution "$prefix/_$i"
+        i=$((i + 1))
+    done
+}
+
+# ---------- 环境校验 ----------
+LEETCODE_REL="src/java/top/chenqwwq/leetcode"
+if [ ! -d "$LEETCODE_REL" ]; then
+    echo "错误：当前目录不是刷题仓库根目录（未找到 ""$LEETCODE_REL""）" >&2
+    echo "请在仓库根目录下执行 lc" >&2
+    exit 1
+fi
+LEETCODE_DIR="$PWD/$LEETCODE_REL"
+
+# ---------- 日期 ----------
+TODAY_COMPACT="$(date +%Y%m%d)"
+YEAR="$(date +%Y)"
+
+# 注释头日期不补零，与仓库既有 @date 格式（如 2026/1/5）保持一致
+MONTH="$((10#$(date +%m)))"
+DAY="$((10#$(date +%d)))"
+TODAY_SLASH="$YEAR/$MONTH/$DAY"
+
+# ---------- 参数解析 ----------
+MODE="${1:-}"
+
+case "$MODE" in
+    -d)
+        create_solution "daily/_$YEAR/_$TODAY_COMPACT"
+        ;;
+    -bw)
+        NUM="${2:-}"
+        if [ -z "$NUM" ] || [ "${NUM#-}" != "$NUM" ]; then
+            echo "错误：-bw 需要指定场次编号" >&2
+            usage >&2
+            exit 1
+        fi
+        create_contest "contest/biweek/_$NUM" "$CONTEST_COUNT"
+        ;;
+    -w)
+        NUM="${2:-}"
+        if [ -z "$NUM" ] || [ "${NUM#-}" != "$NUM" ]; then
+            echo "错误：-w 需要指定场次编号" >&2
+            usage >&2
+            exit 1
+        fi
+        create_contest "contest/weekly/_$NUM" "$CONTEST_COUNT"
+        ;;
+    *)
+        usage >&2
+        exit 1
+        ;;
+esac
